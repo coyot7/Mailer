@@ -25,63 +25,62 @@ namespace Mailer
         {
             try
             {
-                MailMessage message = new MailMessage();
-                SmtpClient smtpClient = new SmtpClient();
-                string msg = string.Empty;
-    
-                MailAddress fromAddress = new MailAddress(textBox3.Text, "Diablerie.pl");
-                message.From = fromAddress;
-                
                 //czytanie listy odbiorców
                 string[] lines = System.IO.File.ReadAllLines(textBox6.Text);
+                //powtarzanie tyle razy ile jest maili
                 foreach (string line in lines)
                 {
+
+                    MailMessage message = new MailMessage();
+                    SmtpClient smtpClient = new SmtpClient();
+                    string msg = string.Empty;
+
+                    MailAddress fromAddress = new MailAddress(textBox3.Text, "Diablerie.pl");
+                    message.From = fromAddress;
+
+                    //dopisywanie do listy pojedyńczego adresata
                     message.To.Add(line);
-                }
-        
-                message.Subject = textBox1.Text;
-                //message.IsBodyHtml = true;
-                message.Body = richTextBox1.Text;
-                smtpClient.Host = "smtp.gmail.com";   // We use gmail as our smtp client
-                smtpClient.Port = 587;
-                smtpClient.EnableSsl = true;
-                smtpClient.UseDefaultCredentials = true;
-                smtpClient.Credentials = new 
-                System.Net.NetworkCredential(textBox3.Text, textBox2.Text);
 
-                if (textBox4.Text.Length != 0)
-                {//zalacznik 1
-                    Attachment data1 = new Attachment(textBox4.Text, MediaTypeNames.Application.Octet);
-                    // Add time stamp information for the file.
-                    ContentDisposition disposition1 = data1.ContentDisposition;
-                    disposition1.CreationDate = System.IO.File.GetCreationTime(textBox4.Text);
-                    disposition1.ModificationDate = System.IO.File.GetLastWriteTime(textBox4.Text);
-                    disposition1.ReadDate = System.IO.File.GetLastAccessTime(textBox4.Text);
-                    // Add the file attachment to this e-mail message.
-                    message.Attachments.Add(data1);
-                }
+                    message.Subject = textBox1.Text;
+                    //message.IsBodyHtml = true;
+                    message.Body = richTextBox1.Text;
+                    smtpClient.Host = "smtp.gmail.com";   // We use gmail as our smtp client
+                    smtpClient.Port = 587;
+                    smtpClient.EnableSsl = true;
+                    smtpClient.UseDefaultCredentials = true;
+                    smtpClient.Credentials = new
+                    System.Net.NetworkCredential(textBox3.Text, textBox2.Text);
 
-                if (textBox5.Text.Length != 0)
-                {
-                    //zalacznik 2
-                    Attachment data2 = new Attachment(textBox5.Text, MediaTypeNames.Application.Octet);
-                    // Add time stamp information for the file.
-                    ContentDisposition disposition2 = data2.ContentDisposition;
-                    disposition2.CreationDate = System.IO.File.GetCreationTime(textBox5.Text);
-                    disposition2.ModificationDate = System.IO.File.GetLastWriteTime(textBox5.Text);
-                    disposition2.ReadDate = System.IO.File.GetLastAccessTime(textBox5.Text);
-                    // Add the file attachment to this e-mail message.
-                    message.Attachments.Add(data2);
-                }
+                    if (textBox4.Text.Length != 0)
+                    {//zalacznik 1
+                        Attachment data1 = new Attachment(textBox4.Text, MediaTypeNames.Application.Octet);
+                        // Add time stamp information for the file.
+                        ContentDisposition disposition1 = data1.ContentDisposition;
+                        disposition1.CreationDate = System.IO.File.GetCreationTime(textBox4.Text);
+                        disposition1.ModificationDate = System.IO.File.GetLastWriteTime(textBox4.Text);
+                        disposition1.ReadDate = System.IO.File.GetLastAccessTime(textBox4.Text);
+                        // Add the file attachment to this e-mail message.
+                        message.Attachments.Add(data1);
+                    }
 
-                //wysylanie
-                for (int i = 0; i < lines.Length; i++ )
-                {
-                    message.To.ElementAt(i);
+                    if (textBox5.Text.Length != 0)
+                    {
+                        //zalacznik 2
+                        Attachment data2 = new Attachment(textBox5.Text, MediaTypeNames.Application.Octet);
+                        // Add time stamp information for the file.
+                        ContentDisposition disposition2 = data2.ContentDisposition;
+                        disposition2.CreationDate = System.IO.File.GetCreationTime(textBox5.Text);
+                        disposition2.ModificationDate = System.IO.File.GetLastWriteTime(textBox5.Text);
+                        disposition2.ReadDate = System.IO.File.GetLastAccessTime(textBox5.Text);
+                        // Add the file attachment to this e-mail message.
+                        message.Attachments.Add(data2);
+                    }
+
+                    //wysylanie
                     smtpClient.Send(message);
+                    //usuwanie odbiorcy
+                    message.To.RemoveAt(0);
                 }
-                //msg = "Successful<BR>";
-
             }
             catch (SmtpException ex)
             {
