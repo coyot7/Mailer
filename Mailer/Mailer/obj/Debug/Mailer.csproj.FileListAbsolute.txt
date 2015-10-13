@@ -1,0 +1,9 @@
+C:\Projekty\Mailer\Mailer\Mailer\bin\Debug\Mailer.exe.config
+C:\Projekty\Mailer\Mailer\Mailer\bin\Debug\Mailer.exe
+C:\Projekty\Mailer\Mailer\Mailer\bin\Debug\Mailer.pdb
+C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.csprojResolveAssemblyReference.cache
+C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.Form1.resources
+C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.Properties.Resources.resources
+C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.csproj.GenerateResource.Cache
+C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.exe
+C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.pdb
