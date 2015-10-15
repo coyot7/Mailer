@@ -7,3 +7,4 @@ C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.Properties.Resources.resources
 C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.csproj.GenerateResource.Cache
 C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.exe
 C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.pdb
+C:\Projekty\Mailer\Mailer\Mailer\obj\Debug\Mailer.Form2.resources
